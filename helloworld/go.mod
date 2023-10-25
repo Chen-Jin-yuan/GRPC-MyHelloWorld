@@ -1,4 +1,4 @@
-module helloworld
+module github.com/Chen-Jin-yuan/GRPC-MyHelloWorld/helloworld
 
 go 1.21.3
 
