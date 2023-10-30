@@ -1,10 +1,10 @@
 module github.com/Chen-Jin-yuan/GRPC-MyHelloWorld/helloworld
 
-go 1.21.3
+go 1.21.1
 
 require (
 	github.com/golang/protobuf v1.5.3
-	google.golang.org/grpc v1.59.0
+	google.golang.org/grpc v1.29.1
 )
 
 require (
