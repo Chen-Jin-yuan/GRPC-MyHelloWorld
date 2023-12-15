@@ -66,13 +66,25 @@ func main() {
 	ctx := metadata.NewOutgoingContext(context.Background(), md)
 
 	for {
-		r1, err := c.SayHello(ctx, &pb.HelloRequest{Name: *name})
-		if err != nil {
-			log.Fatalf("could not greet: %v", err)
-		}
-		log.Printf("Greeting: %s", r1.GetMessage())
+		for i:=0; i<7; i++ {
+			r1, err := c.SayHello(ctx, &pb.HelloRequest{Name: *name})
+			if err != nil {
+				log.Fatalf("could not greet: %v", err)
+			}
+			log.Printf("Greeting: %s", r1.GetMessage())
 
-		time.Sleep(1e7)
+			time.Sleep(1e7)
+		}
+
+		for i:=0; i<3; i++ {
+			r1, err := c.SayHelloAgain(ctx, &pb.HelloAgainRequest{Name:  *name, Number: 1})
+			if err != nil {
+				log.Fatalf("could not greet: %v", err)
+			}
+			log.Printf("Greeting: %s", r1.GetMessage())
+
+			time.Sleep(1e7)
+		}
 	}
 
 }

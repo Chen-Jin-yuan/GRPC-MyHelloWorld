@@ -1,0 +1,37 @@
+version: '2.2'
+
+services:
+  consul:
+    image: consul:latest
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+    restart: always
+
+  client:
+    image: greeter_client_image:1.0
+    ports:
+      - "30002:10001"
+    container_name: 'greet-client'
+    depends_on:
+      - consul
+      - server
+      - server2
+
+  server:
+    image: greeter_server_image:1.0
+    ports:
+      - "30000:50000"
+    container_name: 'greet-server-1'
+    depends_on:
+      - consul
+
+  server2:
+    image: greeter_server_image:1.0
+    ports:
+      - "30001:50000"
+    container_name: 'greet-server-2'
+    depends_on:
+      - consul

@@ -30,6 +30,7 @@ import (
 	"net"
 	"strconv"
 	"sync"
+	"github.com/google/uuid"
 )
 
 // server is used to implement helloworld.GreeterServer.
@@ -78,8 +79,8 @@ func startServer(client *consul.Client, port int, sid string, wg *sync.WaitGroup
 
 	s := grpc.NewServer()
 	pb.RegisterGreeterServer(s, &serverIns)
-
-	err = client.Register("helloServer", sid, "127.0.0.1", port)
+	my_uuid := uuid.New().String()
+	err = client.Register("helloServer", my_uuid, "", port)
 	if err != nil {
 		log.Fatalf("Got error while register service: %v", err)
 	}

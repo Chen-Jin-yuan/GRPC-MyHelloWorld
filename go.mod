@@ -13,6 +13,7 @@ require (
 	github.com/Chen-Jin-yuan/grpc/allocator v1.1.3 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/google/uuid v1.5.0 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/consul v1.0.6 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
