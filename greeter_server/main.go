@@ -46,17 +46,18 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 }
 
 func (s *server) SayHelloAgain(ctx context.Context, in *pb.HelloAgainRequest) (*pb.HelloAgainReply, error) {
-	return &pb.HelloAgainReply{Message: "Hello again " + in.GetName(), DoubleNumber: in.GetNumber() * 2}, nil
+	return &pb.HelloAgainReply{Message: "Hello again " + s.id + " " + in.GetName(), DoubleNumber: in.GetNumber() * 2}, nil
 }
 
 func main() {
 	flag.Parse()
-	consulAddr := "127.0.0.1:8500"
+	//consulAddr := "127.0.0.1:8500"
+	consulAddr := "consul:8500"
 	client, err := consul.NewClient(consulAddr)
 	if err != nil {
 		log.Fatalf("Got error while initializing Consul agent: %v", err)
 	}
-	num := 6
+	num := 1
 	var wg sync.WaitGroup
 	for i := 0; i < num; i++ {
 		wg.Add(1)

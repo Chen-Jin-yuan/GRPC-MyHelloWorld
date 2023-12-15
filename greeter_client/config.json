@@ -2,23 +2,15 @@
   "helloServer": {
     "group": {
       "group1": {
-        "number": 2,
+        "number": 1,
         "selector": {
-          "request-type": "v1"
-        },
-        "weight": [0.2, 0.8]
+          "method": "SayHello"
+        }
       },
       "group2": {
-        "number": 2,
+        "number": 1,
         "selector": {
-          "request-type": "v2"
-        },
-        "weight": [0.3, 0.7]
-      },
-      "group3": {
-        "number": 5,
-        "selector": {
-          "request-type": "v3"
+          "method": "SayHelloAgain"
         }
       }
     }
@@ -26,7 +18,7 @@
   "service2": {
     "group": {
       "group1": {
-        "number": 3,
+        "number": 1,
         "selector": {
           "request-type": "v1",
           "method-type": "v1"

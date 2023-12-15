@@ -42,14 +42,16 @@ var (
 func main() {
 	flag.Parse()
 	// Set up a connection to the server
-	consuladdr := "127.0.0.1:8500"
+	//consulAddr := "127.0.0.1:8500"
+	consulAddr := "consul:8500"
 	svcname := "helloServer"
-	consulClient, err := consul.NewClient(consuladdr)
+	consulClient, err := consul.NewClient(consulAddr)
 
 	conn, err := dialer.Dial(
 		svcname,
 		// 路径从项目根路径开始，
-		dialer.WithBalancer(consulClient, "./greeter_client/config.json", 10001),
+		dialer.WithBalancerBF(consulClient, "./greeter_client/config.json", 10001),
+		dialer.WithStatsHandlerBF(),
 	)
 	//conn, err := grpc.Dial(*addr, grpc.WithInsecure())
 	if err != nil {
@@ -59,11 +61,10 @@ func main() {
 	c := pb.NewGreeterClient(conn)
 
 	// Contact the server and print out its response.
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	md := metadata.Pairs("request-type", "v1")
-	ctx = metadata.NewOutgoingContext(context.Background(), md)
 
-	defer cancel()
+	md := metadata.Pairs("request-type", "v1")
+	ctx := metadata.NewOutgoingContext(context.Background(), md)
+
 	for {
 		r1, err := c.SayHello(ctx, &pb.HelloRequest{Name: *name})
 		if err != nil {
@@ -71,7 +72,7 @@ func main() {
 		}
 		log.Printf("Greeting: %s", r1.GetMessage())
 
-		time.Sleep(5e8)
+		time.Sleep(1e7)
 	}
 
 }

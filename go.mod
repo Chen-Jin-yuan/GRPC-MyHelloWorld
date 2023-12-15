@@ -1,16 +1,16 @@
 module github.com/Chen-Jin-yuan/GRPC-MyHelloWorld
 
-go 1.21.1
+go 1.21.3
 
 require (
-	github.com/Chen-Jin-yuan/GRPC-MyHelloWorld/helloworld v0.0.0-20231025055039-0780f6d0afa8
-	github.com/Chen-Jin-yuan/grpc/allocator v1.0.2
+	github.com/Chen-Jin-yuan/GRPC-MyHelloWorld/helloworld v0.0.0-20231030121140-eee4c38e0b6e
 	github.com/Chen-Jin-yuan/grpc/consul v1.0.3
-	github.com/Chen-Jin-yuan/grpc/dialer v1.0.7
+	github.com/Chen-Jin-yuan/grpc/dialer v1.1.4
 	google.golang.org/grpc v1.29.1
 )
 
 require (
+	github.com/Chen-Jin-yuan/grpc/allocator v1.1.3 // indirect
 	github.com/armon/go-metrics v0.4.1 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
